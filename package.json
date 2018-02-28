@@ -1,0 +1,46 @@
+{
+  "name": "chrome-page-eval",
+  "version": "0.0.0",
+  "description": "Evaluate a script on a page with Chrome",
+  "main": "index.js",
+  "homepage": "https://github.com/jsreport/nodejs-client",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jsreport/nodejs-client.git"
+  },
+  "keywords": [
+    "chrome",
+    "eval",
+    "puppeteer"
+  ],
+  "author": "BJR Matos <bjrmatos@gmail.com>",
+  "contributors": [
+    "BJR Matos <bjrmatos@gmail.com> (https://github.com/bjrmatos)",
+    "Jan Blaha <jan.blaha@hotmail.com> (https://github.com/pofider)"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0"
+  },
+  "standard": {
+    "parser": "babel-eslint",
+    "env": {
+      "node": true,
+      "mocha": true
+    }
+  },
+  "scripts": {
+    "test": "mocha --timeout 5000 test/test.js"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.0.2",
+    "eslint": "4.18.1",
+    "eslint-plugin-babel": "4.1.2",
+    "mocha": "5.0.1",
+    "should": "13.2.1",
+    "standard": "11.0.0"
+  },
+  "dependencies": {
+    "debug": "3.1.0"
+  }
+}
