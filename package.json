@@ -33,11 +33,11 @@
     "test": "mocha --timeout 5000 test/test.js"
   },
   "devDependencies": {
-    "babel-eslint": "8.0.2",
+    "babel-eslint": "8.2.2",
     "eslint": "4.18.1",
     "eslint-plugin-babel": "4.1.2",
     "mocha": "5.0.1",
-    "puppeteer": "1.0.0",
+    "puppeteer": "1.1.1",
     "should": "13.2.1",
     "standard": "11.0.0"
   },
