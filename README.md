@@ -1,4 +1,6 @@
 # chrome-page-eval
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/bjrmatos/chrome-page-eval.svg)](https://greenkeeper.io/)
 [![NPM Version](http://img.shields.io/npm/v/chrome-page-eval.svg?style=flat-square)](https://npmjs.com/package/chrome-page-eval)
 [![License](http://img.shields.io/npm/l/chrome-page-eval.svg?style=flat-square)](http://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/bjrmatos/chrome-page-eval.png?branch=master)](https://travis-ci.org/bjrmatos/chrome-page-eval)
