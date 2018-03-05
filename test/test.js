@@ -1,12 +1,11 @@
+'use strict'
+
 const should = require('should')
 const path = require('path')
-const fs = require('fs')
 const puppeteer = require('puppeteer')
 const chromePageEval = require('../')
 
-const sampleHtml = fs.readFileSync(
-  path.join(__dirname, 'sample.html')
-).toString()
+const sampleHtmlPath = path.join(__dirname, 'sample.html')
 
 describe('chrome-page-eval', () => {
   let chromeEval
@@ -30,7 +29,7 @@ describe('chrome-page-eval', () => {
   it('should fail with invalid script', async () => {
     return should(
       chromeEval({
-        html: sampleHtml,
+        html: sampleHtmlPath,
         scriptFn: `1 + 2`
       })
     ).be.rejected()
@@ -38,7 +37,7 @@ describe('chrome-page-eval', () => {
 
   it('should eval simple script', async () => {
     const result = await chromeEval({
-      html: 'hello',
+      html: sampleHtmlPath,
       scriptFn: 'function () { return 1 + 2 }'
     })
 
@@ -47,7 +46,7 @@ describe('chrome-page-eval', () => {
 
   it('should eval script that uses DOM', async () => {
     const result = await chromeEval({
-      html: sampleHtml,
+      html: sampleHtmlPath,
       scriptFn: `
         function () {
           let title = document.title
@@ -71,7 +70,7 @@ describe('chrome-page-eval', () => {
 
   it('should pass custom args to script', async () => {
     const result = await chromeEval({
-      html: '',
+      html: sampleHtmlPath,
       args: [1, 2],
       scriptFn: `
         function (x, y) {
@@ -86,7 +85,7 @@ describe('chrome-page-eval', () => {
   it('should timeout with blocking script', async () => {
     return should(
       chromeEval({
-        html: '',
+        html: sampleHtmlPath,
         timeout: 1500,
         scriptFn: `
           function () {

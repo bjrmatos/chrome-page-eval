@@ -8,6 +8,22 @@
 This module let you evaluate a script function on a page using Chrome (controlled with [puppeteer](https://github.com/GoogleChrome/puppeteer)) and get the return value of the evaluation in node.
 
 ## Usage
+```html
+<!-- sample.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test page</title>
+</head>
+<body>
+  <div class="content">1</div>
+  <div class="content">2</div>
+  <div class="content">3</div>
+  <div class="content">4</div>
+</body>
+</html>
+```
 
 ```js
 const puppeteer = require('puppeteer')
@@ -17,21 +33,7 @@ const chromeEval = chromePageEval({ puppeteer })
 (async () => {
   try {
     const result = await chromeEval({
-      html: `
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <title>Test page</title>
-        </head>
-        <body>
-          <div class="content">1</div>
-          <div class="content">2</div>
-          <div class="content">3</div>
-          <div class="content">4</div>
-        </body>
-        </html>
-      `,
+      html: '/path/to/sample.html',
       scriptFn: `
         function () {
           let title = document.title
@@ -78,7 +80,7 @@ const chromeEval = chromePageEval({ puppeteer })
 })()
 ```
 
-- `html` **string** **[required]** - the html source to load in a Chrome page
+- `html` **string** **[required]** - the path to the html file to load in a Chrome page
 - `scriptFn` **string** **[required]** - the script to evaluate in the Chrome page. the script must be a function that returns a value. ex: `scriptFn: 'function () { return 1 + 2}'`
 - `viewport` **object** - object with [any of the viewport options supported by puppeteer](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#pagesetviewportviewport)
 - `args` **array** - a list of custom arguments to pass to the `scriptFn` function. ex: `args: [1, 2]` and with `scriptFn: function (a, b) { return a + b}'` will produce `3` as result

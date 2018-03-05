@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "description": "Evaluate a script function on a page with Chrome",
   "main": "index.js",
-  "homepage": "https://github.com/jsreport/nodejs-client",
+  "homepage": "https://github.com/bjrmatos/chrome-page-eval",
   "repository": {
     "type": "git",
-    "url": "git@github.com:jsreport/nodejs-client.git"
+    "url": "git@github.com:bjrmatos/chrome-page-eval.git"
   },
   "keywords": [
     "chrome",
