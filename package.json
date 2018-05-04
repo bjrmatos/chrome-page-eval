@@ -1,6 +1,6 @@
 {
   "name": "chrome-page-eval",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Evaluate a script function on a page with Chrome",
   "main": "index.js",
   "homepage": "https://github.com/bjrmatos/chrome-page-eval",
@@ -20,7 +20,7 @@
   ],
   "license": "MIT",
   "engines": {
-    "node": ">=8.0"
+    "node": ">=8.9"
   },
   "standard": {
     "parser": "babel-eslint",
