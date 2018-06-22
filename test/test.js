@@ -99,4 +99,31 @@ describe('chrome-page-eval', () => {
       })
     ).be.rejectedWith(/Timeout/)
   })
+
+  describe('chrome crashing', () => {
+    let originalUrlFormat
+
+    beforeEach(() => {
+      originalUrlFormat = require('url').format
+    })
+
+    afterEach(() => {
+      require('url').format = originalUrlFormat
+    })
+
+    it('should handle page.on(error) and reject', (done) => {
+      require('url').format = () => 'chrome://crash'
+      process.on('unhandledRejection', () => done(new Error('Rejection should be handled!')))
+
+      chromeEval({
+        html: sampleHtmlPath,
+        timeout: 1500,
+        scriptFn: `
+          function () {
+            return 1 + 2
+          }
+        `
+      }).catch(() => done())
+    })
+  })
 })
