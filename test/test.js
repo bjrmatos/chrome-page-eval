@@ -68,6 +68,57 @@ describe('chrome-page-eval', () => {
     should(result.content).have.length(4)
   })
 
+  it('should wait for JS trigger to start to eval', async () => {
+    const result = await chromeEval({
+      html: path.join(__dirname, 'sampleJSTrigger.html'),
+      waitForJS: true,
+      scriptFn: `
+        function () {
+          let title = document.title
+
+          let content = Array.from(document.querySelectorAll('.content'), (node) => {
+            return node.textContent
+          })
+
+          return {
+            title,
+            content
+          }
+        }
+      `
+    })
+
+    should(result).be.Object()
+    should(result.title).be.eql('Test page')
+    should(result.content).have.length(5)
+  })
+
+  it('should wait for JS trigger to start to eval (custom var name)', async () => {
+    const result = await chromeEval({
+      html: path.join(__dirname, 'sampleJSTrigger2.html'),
+      waitForJS: true,
+      waitForJSVarName: 'READY_TO_START',
+      scriptFn: `
+        function () {
+          let title = document.title
+
+          let content = Array.from(document.querySelectorAll('.content'), (node) => {
+            return node.textContent
+          })
+
+          return {
+            title,
+            content
+          }
+        }
+      `
+    })
+
+    should(result).be.Object()
+    should(result.title).be.eql('Test page')
+    should(result.content).have.length(5)
+  })
+
   it('should pass custom args to script', async () => {
     const result = await chromeEval({
       html: sampleHtmlPath,
