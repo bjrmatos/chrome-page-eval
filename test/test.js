@@ -68,6 +68,46 @@ describe('chrome-page-eval', () => {
     should(result.content).have.length(4)
   })
 
+  it('should allow inserting styles at the beginning of page', async () => {
+    const result = await chromeEval({
+      html: sampleHtmlPath,
+      styles: [`
+        * {
+          font-family: Calibri
+        }
+
+        .extra {
+          font-family: "Times New Roman"
+        }
+      `],
+      scriptFn: `
+        function () {
+          let title = document.title
+          const contentNodes = document.querySelectorAll('.content')
+
+          const contentFontFamily = document.defaultView.getComputedStyle(contentNodes[0], null).getPropertyValue('font-family')
+          const extraFontFamily = document.defaultView.getComputedStyle(document.querySelector('.extra'), null).getPropertyValue('font-family')
+
+          let content = Array.from(contentNodes, (node) => {
+            return node.textContent
+          })
+
+          return {
+            title,
+            content,
+            contentFontFamily,
+            extraFontFamily
+          }
+        }
+      `
+    })
+
+    should(result).be.Object()
+    should(result.title).be.eql('Test page')
+    should(result.contentFontFamily).be.eql('Calibri')
+    should(result.extraFontFamily).be.eql('"Times New Roman"')
+  })
+
   it('should wait for JS trigger to start to eval', async () => {
     const result = await chromeEval({
       html: path.join(__dirname, 'sampleJSTrigger.html'),
