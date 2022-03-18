@@ -66,7 +66,7 @@ const chromeEval = chromePageEval({ /*[constructor options here]*/ })
 ```
 
 - `puppeteer` **[required]** - the exported module from [puppeteer](https://github.com/GoogleChrome/puppeteer) that your app is going to use
-- `launchOptions` **object** - object with [any of the launch options supported by puppeteer](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions)
+- properties with [any of the launch options supported by puppeteer](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#puppeteerlaunchoptions)
 
 ## Evaluate options
 
