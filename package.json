@@ -29,7 +29,7 @@
     }
   },
   "scripts": {
-    "test": "mocha --timeout 5000 test/test.js"
+    "test": "mocha --timeout 12000 test/test.js && standard"
   },
   "devDependencies": {
     "mocha": "10.1.0",

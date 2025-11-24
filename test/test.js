@@ -30,7 +30,7 @@ describe('chrome-page-eval', () => {
     return should(
       chromeEval({
         html: sampleHtmlPath,
-        scriptFn: `1 + 2`
+        scriptFn: '1 + 2'
       })
     ).be.rejected()
   })
